@@ -2,6 +2,11 @@ class UTDRoomsBackedException implements Exception {
   int statusCode;
   String cause;
   UTDRoomsBackedException(this.statusCode, this.cause);
+
+  @override
+  String toString() {
+    return "(statusCode = $statusCode, cause = $cause)";
+  }
 }
 
 class RoomTimeRangesRequestFailed extends UTDRoomsBackedException {
@@ -22,4 +27,9 @@ class CheckOutOfRoomFailed extends UTDRoomsBackedException {
 
 class GetCheckedRoomsFailed extends UTDRoomsBackedException {
   GetCheckedRoomsFailed(int statusCode, String cause) : super(statusCode, cause);
+}
+
+
+class UnableToGetAllRooms extends UTDRoomsBackedException {
+  UnableToGetAllRooms(int statusCode, String cause) : super(statusCode, cause);
 }

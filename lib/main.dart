@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Startup Name Generator',
+      title: 'UTD Rooms',
       home: MainPageState(),
     );
   }
@@ -50,10 +50,7 @@ class _MainPageStateState extends State<MainPageState> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: IndexedStack(
-            index: index,
-            children: screens
-        ),
+        body: screens[index],
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
             indicatorColor:  barColors[index][1],
@@ -70,8 +67,8 @@ class _MainPageStateState extends State<MainPageState> {
             },
             destinations: const [
               NavigationDestination(
-                icon: Icon(Icons.access_time_outlined),
-                selectedIcon: Icon(Icons.access_time_filled),
+                icon: Icon(Icons.meeting_room_outlined),
+                selectedIcon: Icon(Icons.meeting_room_rounded),
                 label: 'Open Rooms',
               ),
               NavigationDestination(
@@ -82,7 +79,7 @@ class _MainPageStateState extends State<MainPageState> {
               NavigationDestination(
                 icon: Icon(Icons.group_outlined),
                 selectedIcon: Icon(Icons.group),
-                label: 'Checked Rooms',
+                label: 'Marked Rooms',
               ),
             ],
           ),

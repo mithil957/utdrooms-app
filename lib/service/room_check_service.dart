@@ -32,7 +32,7 @@ Future<bool> checkOutOfRoom(String room) async {
 Future<Map<String, int>> getCheckedRooms() async {
   final uri = Uri.https('utdrooms.com', '/checked_rooms');
   final response = await http.get(uri);
-  
+
   if (response.statusCode == 200) {
     Map<String, dynamic> jsonResponse = json.decode(response.body);
     return jsonResponse.map((key, value) => MapEntry(key, value as int));
@@ -40,7 +40,3 @@ Future<Map<String, int>> getCheckedRooms() async {
     throw GetCheckedRoomsFailed(response.statusCode, response.body);
   }
 }
-
-
-
-
