@@ -14,14 +14,12 @@ class _InformationScreenState extends State<InformationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          iconTheme: const IconThemeData(
-              color: Colors.black
-          ),
-          title: const Text('Information'),
-          titleTextStyle: const TextStyle(
-              color: Colors.black, fontSize: 23, fontWeight: FontWeight.w500),
-          centerTitle: true,
-          backgroundColor: utdGreen50),
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: const Text('Information'),
+        titleTextStyle: const TextStyle(
+            color: Colors.black, fontSize: 23, fontWeight: FontWeight.w500),
+        centerTitle: true,
+      ),
     );
   }
 }

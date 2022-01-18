@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:utdrooms_mobile_app/colors.dart';
 import 'package:intl/intl.dart';
 import 'package:utdrooms_mobile_app/data_screens/open_rooms_data_screen.dart';
+import 'package:utdrooms_mobile_app/globals.dart';
 import 'package:utdrooms_mobile_app/model/request/room_time_ranges_request.dart';
 
 class OpenRoomsScreen extends StatefulWidget {
@@ -14,15 +15,6 @@ class OpenRoomsScreen extends StatefulWidget {
 }
 
 class _OpenRoomsScreenState extends State<OpenRoomsScreen> {
-  final _daysOfTheWeek = <String>[
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-  ];
 
   late String _daySelected =
       DateFormat('EEEE').format(DateTime.now()).toString();
@@ -38,16 +30,13 @@ class _OpenRoomsScreenState extends State<OpenRoomsScreen> {
       value: _daySelected,
       decoration: const InputDecoration(
         filled: true,
-        fillColor: utdOrange50,
-        // labelText: 'Select a day',
-        // border: OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))
       ),
       onChanged: (String? dayPicked) {
         setState(() {
           _daySelected = dayPicked!;
         });
       },
-      items: _daysOfTheWeek.map<DropdownMenuItem<String>>((String day) {
+      items: daysOfTheWeek.map<DropdownMenuItem<String>>((String day) {
         return DropdownMenuItem<String>(
           value: day,
           child: Text(day),
@@ -66,11 +55,7 @@ class _OpenRoomsScreenState extends State<OpenRoomsScreen> {
         initialEntryMode: TimePickerEntryMode.input,
         builder: (context, child) {
           return Theme(
-            data: ThemeData.light().copyWith(
-                colorScheme: const ColorScheme.light(
-                    primary: utdOrange150,
-                    surface: utdOrange50,
-                    onSurface: Colors.black)),
+            data: ThemeData.light(),
             child: child!,
           );
         });
@@ -85,14 +70,12 @@ class _OpenRoomsScreenState extends State<OpenRoomsScreen> {
 
   Widget _minimumTimeSelector() {
     return SliderTheme(
-      data: const SliderThemeData(valueIndicatorColor: utdOrange150),
+      data: const SliderThemeData(),
       child: Slider.adaptive(
         value: _minimumTimeSelected,
         min: 0,
         max: 120.0,
         divisions: 4,
-        activeColor: utdOrange150,
-        inactiveColor: utdOrange100,
         label: _minimumTimeSelected.round().toString() + ' minutes',
         onChanged: (value) {
           setState(() {
@@ -142,8 +125,6 @@ class _OpenRoomsScreenState extends State<OpenRoomsScreen> {
                       color: Colors.black, fontWeight: FontWeight.normal),
                 ),
                 style: OutlinedButton.styleFrom(
-                    primary: utdOrange50,
-                    backgroundColor: utdOrange50,
                     side: const BorderSide(color: Colors.black45)
                     // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                     )),
@@ -165,7 +146,6 @@ class _OpenRoomsScreenState extends State<OpenRoomsScreen> {
           style: ElevatedButton.styleFrom(
             //TODO how to not hardcode these? controls the size of the button
             padding: const EdgeInsets.fromLTRB(100.0, 5.0, 100.0, 5.0),
-            primary: utdOrange150,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           ),

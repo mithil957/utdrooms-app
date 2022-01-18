@@ -31,9 +31,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'UTD Rooms',
       home: MainPageState(),
-      theme: CustomTheme.lightTheme,
-      darkTheme: CustomTheme.darkTheme,
-      themeMode: currentTheme.currentTheme,
+      theme: CustomTheme.shrineTheme
     );
   }
 }
@@ -53,12 +51,6 @@ class _MainPageStateState extends State<MainPageState> {
     CheckedRoomsScreen(),
   ];
 
-  final barColors = [
-    [utdOrange50, utdOrange100, utdOrange150],
-    [utdGreen50, utdGreen100, utdGreen150],
-    [purple50, purple100, purple150],
-  ];
-
   void _InformationScreen() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return const InformationScreen();
@@ -70,8 +62,6 @@ class _MainPageStateState extends State<MainPageState> {
         body: screens[index],
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
-            indicatorColor: barColors[index][1],
-            backgroundColor: barColors[index][0],
             labelTextStyle: MaterialStateProperty.all(
               const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
@@ -116,7 +106,6 @@ class _MainPageStateState extends State<MainPageState> {
               ),
             )
           ],
-          backgroundColor: barColors[index][2],
         ),
       );
 }

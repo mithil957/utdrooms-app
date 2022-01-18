@@ -33,7 +33,6 @@ class _RoomScheduleScreenState extends State<RoomScheduleScreen> {
       value: _daySelected,
       decoration: const InputDecoration(
         filled: true,
-        fillColor: utdGreen50,
       ),
       onChanged: (String? dayPicked) {
         setState(() {
@@ -52,7 +51,6 @@ class _RoomScheduleScreenState extends State<RoomScheduleScreen> {
   Widget _buildRoomDropDown(List<String> rooms) {
     return MultiSelectDialogField(
       decoration: const BoxDecoration(
-          color: utdGreen50,
           border: Border(
               bottom: BorderSide(
                   color: Colors.black,
@@ -60,13 +58,10 @@ class _RoomScheduleScreenState extends State<RoomScheduleScreen> {
               )
           )
       ),
-      backgroundColor: utdGreen50,
-      selectedColor: utdGreen150,
       // checkColor: Colors.black,
       height: 400,
       buttonIcon: const Icon(Icons.arrow_drop_down, color: Color.fromRGBO(0, 0, 0, .6),),
       chipDisplay: MultiSelectChipDisplay(
-        chipColor: utdGreen150,
         textStyle: const TextStyle(color: Colors.white),
         items: _selectedRooms.map((e) => MultiSelectItem(e, e)).toList(),
         onTap: (value) {
@@ -143,7 +138,6 @@ class _RoomScheduleScreenState extends State<RoomScheduleScreen> {
               style: ElevatedButton.styleFrom(
                 //TODO how to not hardcode these? controls the size of the button
                 padding: const EdgeInsets.fromLTRB(100.0, 5.0, 100.0, 5.0),
-                primary: utdGreen150,
                 shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
               ),
