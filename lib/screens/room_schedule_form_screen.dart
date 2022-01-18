@@ -67,16 +67,18 @@ class _RoomScheduleScreenState extends State<RoomScheduleScreen> {
       buttonIcon: const Icon(Icons.arrow_drop_down, color: Color.fromRGBO(0, 0, 0, .6),),
       chipDisplay: MultiSelectChipDisplay(
         chipColor: utdGreen150,
-        textStyle: TextStyle(color: Colors.white),
+        textStyle: const TextStyle(color: Colors.white),
         items: _selectedRooms.map((e) => MultiSelectItem(e, e)).toList(),
-        onTap: (value) {},
+        onTap: (value) {
+          setState(() {
+            _selectedRooms.remove(value);
+          });
+        },
       ),
       items: rooms.map((e) => MultiSelectItem(e, e)).toList(),
       searchable: true,
       listType: MultiSelectListType.LIST,
       onConfirm: (values) {
-        print(values);
-        print(values.runtimeType);
         _selectedRooms = values;
       },
     );

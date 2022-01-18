@@ -40,15 +40,24 @@ class _RoomScheduleDataScreenState extends State<RoomScheduleDataScreen> {
 
   Widget _buildRoomScheduleTile(String room, List<ClassInfo> classes) {
     return ExpansionTile(
-      title: Text(room),
-      children: [
-        ...[
-          for (var i = 0; i < classes.length; i++)
-            ..._buildClassInformation(classes[i])
-        ],
-        Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 9.0))
-      ],
-    );
+        title: Text(room),
+        children: () {
+          List<Widget> tempList = [];
+          if (classes.isNotEmpty) {
+            for (var i = 0; i < classes.length; i++) {
+              tempList.addAll(_buildClassInformation(classes[i]));
+            }
+          } else {
+            tempList.add(const Text(
+              "No classes found for this room",
+              style: TextStyle(fontSize: 16),
+            ));
+          }
+
+          tempList
+              .add(const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 9.0)));
+          return tempList;
+        }());
   }
 
   Widget _buildRoomScheduleList() {
