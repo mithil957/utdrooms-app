@@ -4,19 +4,36 @@ import 'package:utdrooms_mobile_app/screens/room_schedule_form_screen.dart';
 import 'package:utdrooms_mobile_app/screens/checked_rooms_form_screen.dart';
 import 'package:utdrooms_mobile_app/screens/app_information_screen.dart';
 import 'package:utdrooms_mobile_app/screens/open_rooms_form_screen.dart';
+import 'package:utdrooms_mobile_app/themes.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'UTD Rooms',
       home: MainPageState(),
+      theme: CustomTheme.lightTheme,
+      darkTheme: CustomTheme.darkTheme,
+      themeMode: currentTheme.currentTheme,
     );
   }
 }
@@ -53,7 +70,7 @@ class _MainPageStateState extends State<MainPageState> {
         body: screens[index],
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
-            indicatorColor:  barColors[index][1],
+            indicatorColor: barColors[index][1],
             backgroundColor: barColors[index][0],
             labelTextStyle: MaterialStateProperty.all(
               const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
