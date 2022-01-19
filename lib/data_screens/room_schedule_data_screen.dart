@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:utdrooms_mobile_app/colors.dart';
 import 'package:utdrooms_mobile_app/model/request/room_schedule_request.dart';
 import 'package:utdrooms_mobile_app/model/response/class_info.dart';
 import 'package:utdrooms_mobile_app/service/get_room_schedule.dart';
@@ -29,10 +30,14 @@ class _RoomScheduleDataScreenState extends State<RoomScheduleDataScreen> {
         indent: 16,
         endIndent: 16,
         thickness: 1.0,
+        color: utdOrange,
       ),
-      Text(
-        classInfo.title,
-        style: const TextStyle(fontSize: 16),
+      Center(
+        child: Text(
+          classInfo.title,
+          style: const TextStyle(fontSize: 17),
+          textAlign: TextAlign.center,
+        ),
       ),
       Text('From ${classInfo.startTime} to ${classInfo.endTime}'),
     ];
@@ -40,7 +45,13 @@ class _RoomScheduleDataScreenState extends State<RoomScheduleDataScreen> {
 
   Widget _buildRoomScheduleTile(String room, List<ClassInfo> classes) {
     return ExpansionTile(
-        title: Text(room),
+        title: Text(
+          room,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+        ),
+        iconColor: utdGreen,
+        collapsedIconColor: utdGreen,
+        textColor: Colors.black,
         children: () {
           List<Widget> tempList = [];
           if (classes.isNotEmpty) {
@@ -69,6 +80,9 @@ class _RoomScheduleDataScreenState extends State<RoomScheduleDataScreen> {
 
             return Column(
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
                 Expanded(
                     child: ListView.builder(
                   itemCount: _roomSchedule.length,
@@ -83,7 +97,10 @@ class _RoomScheduleDataScreenState extends State<RoomScheduleDataScreen> {
           } else if (snapshot.hasError) {
             return const Center(child: Text("Server gave bad response :("));
           }
-          return const Center(child: CircularProgressIndicator.adaptive());
+          return const Center(
+              child: CircularProgressIndicator.adaptive(
+            valueColor: AlwaysStoppedAnimation(utdOrange),
+          ));
         });
   }
 
@@ -93,6 +110,7 @@ class _RoomScheduleDataScreenState extends State<RoomScheduleDataScreen> {
       appBar: AppBar(
         title: const Text("Room Schedule"),
         actions: const [],
+        backgroundColor: utdOrange,
       ),
       body: _buildRoomScheduleList(),
     );

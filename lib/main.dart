@@ -5,7 +5,12 @@ import 'package:utdrooms_mobile_app/screens/checked_rooms_form_screen.dart';
 import 'package:utdrooms_mobile_app/screens/app_information_screen.dart';
 import 'package:utdrooms_mobile_app/screens/open_rooms_form_screen.dart';
 
-void main() {
+import 'model/user_data.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await UserData.init();
+
   runApp(const MyApp());
 }
 
@@ -36,13 +41,7 @@ class _MainPageStateState extends State<MainPageState> {
     CheckedRoomsScreen(),
   ];
 
-  final barColors = [
-    [utdOrange50, utdOrange100, utdOrange150],
-    [utdGreen50, utdGreen100, utdGreen150],
-    [purple50, purple100, purple150],
-  ];
-
-  void _InformationScreen() {
+  void _informationScreen() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return const InformationScreen();
     }));
@@ -53,10 +52,10 @@ class _MainPageStateState extends State<MainPageState> {
         body: screens[index],
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
-            indicatorColor:  barColors[index][1],
-            backgroundColor: barColors[index][0],
+            indicatorColor:  utdOrange,
+            backgroundColor: utdOrange50,
             labelTextStyle: MaterialStateProperty.all(
-              const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black),
             ),
           ),
           child: NavigationBar(
@@ -68,17 +67,17 @@ class _MainPageStateState extends State<MainPageState> {
             destinations: const [
               NavigationDestination(
                 icon: Icon(Icons.meeting_room_outlined),
-                selectedIcon: Icon(Icons.meeting_room_rounded),
+                selectedIcon: Icon(Icons.meeting_room_rounded, color: Colors.white,),
                 label: 'Open Rooms',
               ),
               NavigationDestination(
                 icon: Icon(Icons.article_outlined),
-                selectedIcon: Icon(Icons.article_rounded),
+                selectedIcon: Icon(Icons.article_rounded, color: Colors.white),
                 label: 'Room Schedule',
               ),
               NavigationDestination(
                 icon: Icon(Icons.group_outlined),
-                selectedIcon: Icon(Icons.group),
+                selectedIcon: Icon(Icons.group, color: Colors.white),
                 label: 'Marked Rooms',
               ),
             ],
@@ -95,11 +94,11 @@ class _MainPageStateState extends State<MainPageState> {
               child: IconButton(
                 icon: const Icon(Icons.info_outline),
                 color: Colors.white,
-                onPressed: _InformationScreen,
+                onPressed: _informationScreen,
               ),
             )
           ],
-          backgroundColor: barColors[index][2],
+          backgroundColor: utdOrange,
         ),
       );
 }

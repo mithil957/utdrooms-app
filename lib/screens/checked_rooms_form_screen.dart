@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:utdrooms_mobile_app/colors.dart';
 import 'package:utdrooms_mobile_app/service/room_check_service.dart';
 
 class CheckedRoomsScreen extends StatefulWidget {
@@ -34,9 +35,22 @@ class _CheckedRoomsScreenState extends State<CheckedRoomsScreen> {
 
           return Column(
             children: [
+              const SizedBox(height: 20),
               const ListTile(
-                title: Text("Room"),
-                trailing: Text("# of times marked open"),
+                title: Text(
+                  "Room",
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                ),
+                trailing: Text(
+                  "# of times marked open",
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                ),
+              ),
+              const Divider(
+                indent: 16,
+                endIndent: 16,
+                thickness: 1.0,
+                color: utdOrange,
               ),
               Expanded(
                   child: ListView.builder(
@@ -44,13 +58,35 @@ class _CheckedRoomsScreenState extends State<CheckedRoomsScreen> {
                 itemBuilder: (context, index) {
                   return _buildMarkedRoomListTile(_markedRooms[index]);
                 },
-              ))
+              )),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _markedRoomsFuture = getCheckedRooms();
+                  });
+                },
+                child: const Text(
+                  'Refresh',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                style: ElevatedButton.styleFrom(
+                  //TODO how to not hardcode these? controls the size of the button
+                  padding: const EdgeInsets.fromLTRB(100.0, 5.0, 100.0, 5.0),
+                  primary: utdGreen,
+                  shape:
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                ),
+              ),
+              const SizedBox(height: 20),
             ],
           );
         } else if (snapshot.hasError) {
           return const Center(child: Text("Server gave bad response :("));
         }
-        return const Center(child: CircularProgressIndicator.adaptive());
+        return const Center(
+            child: CircularProgressIndicator.adaptive(
+          valueColor: AlwaysStoppedAnimation(utdOrange),
+        ));
       },
     );
   }
