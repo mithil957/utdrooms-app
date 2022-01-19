@@ -84,7 +84,7 @@ class _CheckedRoomsScreenState extends State<CheckedRoomsScreen> {
           return const Center(child: Text("Server gave bad response :("));
         }
         return const Center(
-            child: CircularProgressIndicator.adaptive(
+            child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation(utdOrange),
         ));
       },

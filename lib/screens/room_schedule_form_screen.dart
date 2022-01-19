@@ -98,7 +98,7 @@ class _RoomScheduleScreenState extends State<RoomScheduleScreen> {
           return const Center(child: Text("Server gave bad response :("));
         }
         return const Center(
-            child: CircularProgressIndicator.adaptive(
+            child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(utdOrange),
             ));
       }

@@ -76,7 +76,7 @@ class _OpenRoomsScreenState extends State<OpenRoomsScreen> {
   Widget _minimumTimeSelector() {
     return SliderTheme(
       data: const SliderThemeData(valueIndicatorColor: utdGreen),
-      child: Slider.adaptive(
+      child: Slider(
         value: _minimumTimeSelected,
         min: 0,
         max: 120.0,

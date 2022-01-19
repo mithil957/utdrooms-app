@@ -188,7 +188,7 @@ class _OpenRoomsDataScreenState extends State<OpenRoomsDataScreen> {
           return const Center(child: Text("Server gave bad response :("));
         }
         return const Center(
-            child: CircularProgressIndicator.adaptive(
+            child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation(utdOrange),
         ));
       },
