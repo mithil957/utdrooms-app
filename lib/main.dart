@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'UTD Rooms',
       home: MainPageState(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
